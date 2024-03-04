@@ -1,0 +1,46 @@
+<.header>
+  Listing Surveys
+  <:actions>
+    <.link patch={~p"/surveys/new"}>
+      <.button>New Survey</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="surveys"
+  rows={@streams.surveys}
+  row_click={fn {_id, survey} -> JS.navigate(~p"/surveys/#{survey}") end}
+>
+  <:col :let={{_id, survey}} label="Title"><%= survey.title %></:col>
+  <:action :let={{_id, survey}}>
+    <div class="sr-only">
+      <.link navigate={~p"/surveys/#{survey}"}>Show</.link>
+    </div>
+    <.link patch={~p"/surveys/#{survey}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, survey}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: survey.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="survey-modal"
+  show
+  on_cancel={JS.patch(~p"/surveys")}
+>
+  <.live_component
+    module={WtrSurveyWeb.SurveyLive.FormComponent}
+    id={@survey.id || :new}
+    title={@page_title}
+    action={@live_action}
+    survey={@survey}
+    patch={~p"/surveys"}
+  />
+</.modal>
