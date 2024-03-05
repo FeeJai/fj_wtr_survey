@@ -1,4 +1,4 @@
-defmodule WtrSurveyWeb.SurveyLiveTest do
+defmodule WtrSurveyWeb.PromptLiveTest do
   use WtrSurveyWeb.ConnCase
 
   import Phoenix.LiveViewTest
@@ -8,105 +8,105 @@ defmodule WtrSurveyWeb.SurveyLiveTest do
   @update_attrs %{title: "some updated title"}
   @invalid_attrs %{title: nil}
 
-  defp create_survey(_) do
-    survey = survey_fixture()
-    %{survey: survey}
+  defp create_prompt(_) do
+    prompt = prompt_fixture()
+    %{prompt: prompt}
   end
 
   describe "Index" do
-    setup [:create_survey]
+    setup [:create_prompt]
 
-    test "lists all surveys", %{conn: conn, survey: survey} do
-      {:ok, _index_live, html} = live(conn, ~p"/surveys")
+    test "lists all prompts", %{conn: conn, prompt: prompt} do
+      {:ok, _index_live, html} = live(conn, ~p"/prompts")
 
-      assert html =~ "Listing Surveys"
-      assert html =~ survey.title
+      assert html =~ "Listing Prompts"
+      assert html =~ prompt.title
     end
 
-    test "saves new survey", %{conn: conn} do
-      {:ok, index_live, _html} = live(conn, ~p"/surveys")
+    test "saves new prompt", %{conn: conn} do
+      {:ok, index_live, _html} = live(conn, ~p"/prompts")
 
-      assert index_live |> element("a", "New Survey") |> render_click() =~
-               "New Survey"
+      assert index_live |> element("a", "New Prompt") |> render_click() =~
+               "New Prompt"
 
-      assert_patch(index_live, ~p"/surveys/new")
+      assert_patch(index_live, ~p"/prompts/new")
 
       assert index_live
-             |> form("#survey-form", survey: @invalid_attrs)
+             |> form("#prompt-form", prompt: @invalid_attrs)
              |> render_change() =~ "can&#39;t be blank"
 
       assert index_live
-             |> form("#survey-form", survey: @create_attrs)
+             |> form("#prompt-form", prompt: @create_attrs)
              |> render_submit()
 
-      assert_patch(index_live, ~p"/surveys")
+      assert_patch(index_live, ~p"/prompts")
 
       html = render(index_live)
-      assert html =~ "Survey created successfully"
+      assert html =~ "Prompt created successfully"
       assert html =~ "some title"
     end
 
-    test "updates survey in listing", %{conn: conn, survey: survey} do
-      {:ok, index_live, _html} = live(conn, ~p"/surveys")
+    test "updates prompt in listing", %{conn: conn, prompt: prompt} do
+      {:ok, index_live, _html} = live(conn, ~p"/prompts")
 
-      assert index_live |> element("#surveys-#{survey.id} a", "Edit") |> render_click() =~
-               "Edit Survey"
+      assert index_live |> element("#prompts-#{prompt.id} a", "Edit") |> render_click() =~
+               "Edit Prompt"
 
-      assert_patch(index_live, ~p"/surveys/#{survey}/edit")
+      assert_patch(index_live, ~p"/prompts/#{prompt}/edit")
 
       assert index_live
-             |> form("#survey-form", survey: @invalid_attrs)
+             |> form("#prompt-form", prompt: @invalid_attrs)
              |> render_change() =~ "can&#39;t be blank"
 
       assert index_live
-             |> form("#survey-form", survey: @update_attrs)
+             |> form("#prompt-form", prompt: @update_attrs)
              |> render_submit()
 
-      assert_patch(index_live, ~p"/surveys")
+      assert_patch(index_live, ~p"/prompts")
 
       html = render(index_live)
-      assert html =~ "Survey updated successfully"
+      assert html =~ "Prompt updated successfully"
       assert html =~ "some updated title"
     end
 
-    test "deletes survey in listing", %{conn: conn, survey: survey} do
-      {:ok, index_live, _html} = live(conn, ~p"/surveys")
+    test "deletes prompt in listing", %{conn: conn, prompt: prompt} do
+      {:ok, index_live, _html} = live(conn, ~p"/prompts")
 
-      assert index_live |> element("#surveys-#{survey.id} a", "Delete") |> render_click()
-      refute has_element?(index_live, "#surveys-#{survey.id}")
+      assert index_live |> element("#prompts-#{prompt.id} a", "Delete") |> render_click()
+      refute has_element?(index_live, "#prompts-#{prompt.id}")
     end
   end
 
   describe "Show" do
-    setup [:create_survey]
+    setup [:create_prompt]
 
-    test "displays survey", %{conn: conn, survey: survey} do
-      {:ok, _show_live, html} = live(conn, ~p"/surveys/#{survey}")
+    test "displays prompt", %{conn: conn, prompt: prompt} do
+      {:ok, _show_live, html} = live(conn, ~p"/prompts/#{prompt}")
 
-      assert html =~ "Show Survey"
-      assert html =~ survey.title
+      assert html =~ "Show Prompt"
+      assert html =~ prompt.title
     end
 
-    test "updates survey within modal", %{conn: conn, survey: survey} do
-      {:ok, show_live, _html} = live(conn, ~p"/surveys/#{survey}")
+    test "updates prompt within modal", %{conn: conn, prompt: prompt} do
+      {:ok, show_live, _html} = live(conn, ~p"/prompts/#{prompt}")
 
       assert show_live |> element("a", "Edit") |> render_click() =~
-               "Edit Survey"
+               "Edit Prompt"
 
-      assert_patch(show_live, ~p"/surveys/#{survey}/show/edit")
+      assert_patch(show_live, ~p"/prompts/#{prompt}/show/edit")
 
       assert show_live
-             |> form("#survey-form", survey: @invalid_attrs)
+             |> form("#prompt-form", prompt: @invalid_attrs)
              |> render_change() =~ "can&#39;t be blank"
 
       assert show_live
-             |> form("#survey-form", survey: @update_attrs)
+             |> form("#prompt-form", prompt: @update_attrs)
              |> render_submit()
 
-      assert_patch(show_live, ~p"/surveys/#{survey}")
+      assert_patch(show_live, ~p"/prompts/#{prompt}")
 
       html = render(show_live)
-      assert html =~ "Survey updated successfully"
+      assert html =~ "Prompt updated successfully"
       assert html =~ "some updated title"
     end
   end

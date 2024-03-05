@@ -5,16 +5,31 @@ defmodule WtrSurvey.DataFixtures do
   """
 
   @doc """
-  Generate a survey.
+  Generate a prompt.
   """
-  def survey_fixture(attrs \\ %{}) do
-    {:ok, survey} =
+  def prompt_fixture(attrs \\ %{}) do
+    {:ok, prompt} =
       attrs
       |> Enum.into(%{
         title: "some title"
       })
-      |> WtrSurvey.Data.create_survey()
+      |> WtrSurvey.Data.create_prompt()
 
-    survey
+    prompt
+  end
+
+  @doc """
+  Generate a answer.
+  """
+  def answer_fixture(attrs \\ %{}) do
+    {:ok, answer} =
+      attrs
+      |> Enum.into(%{
+        participant: 120.5,
+        you: 120.5
+      })
+      |> WtrSurvey.Data.create_answer()
+
+    answer
   end
 end

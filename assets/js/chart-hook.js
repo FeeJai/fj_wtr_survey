@@ -6,10 +6,10 @@ export default {
     return {
       type: 'bar',
       data: {
-        labels: ["left", "right"],
+        labels: ["You", this.el.dataset.participantName],
         datasets: [{
           label: 'Allocation Distribution',
-          data: [65, 59],
+          data: [this.el.dataset.youValue, this.el.dataset.participantValue],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(255, 159, 64, 0.2)'

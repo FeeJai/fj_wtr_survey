@@ -1,0 +1,38 @@
+<.header>
+  WTR prompt <%= @prompt.id %>
+  <:subtitle><%= @prompt.title %></:subtitle>
+  <:actions>
+    <.button phx-click="save">Save answer</.button>
+  </:actions>
+</.header>
+
+<canvas
+  id={"chart-hook-#{@prompt.id}"}
+  phx-hook="ChartHook"
+  data-participant-name={@prompt.participant}
+  data-participant-value={@participant}
+  data-you-value={@you}
+>
+</canvas>
+<div class="flex justify-between">
+  <.button phx-click="add">&#60; You</.button>
+  <.button phx-click="subtract"><%= @prompt.participant %> &#62;</.button>
+</div>
+
+<.back navigate={~p"/prompts"}>Back to prompts</.back>
+
+<.modal
+  :if={@live_action == :edit}
+  id="prompt-modal"
+  show
+  on_cancel={JS.patch(~p"/prompts/#{@prompt}")}
+>
+  <.live_component
+    module={WtrSurveyWeb.PromptLive.FormComponent}
+    id={@prompt.id}
+    title={@page_title}
+    action={@live_action}
+    prompt={@prompt}
+    patch={~p"/prompts/#{@prompt}"}
+  />
+</.modal>

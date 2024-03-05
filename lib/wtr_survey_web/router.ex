@@ -17,13 +17,20 @@ defmodule WtrSurveyWeb.Router do
   scope "/", WtrSurveyWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
-    live "/surveys", SurveyLive.Index, :index
-    live "/surveys/new", SurveyLive.Index, :new
-    live "/surveys/:id/edit", SurveyLive.Index, :edit
+    live "/", PromptLive.Index, :index
+    live "/prompts", PromptLive.Index, :index
+    live "/prompts/new", PromptLive.Index, :new
+    live "/prompts/:id/edit", PromptLive.Index, :edit
 
-    live "/surveys/:id", SurveyLive.Show, :show
-    live "/surveys/:id/show/edit", SurveyLive.Show, :edit
+    live "/prompts/:id", PromptLive.Show, :show
+    live "/prompts/:id/show/edit", PromptLive.Show, :edit
+
+    live "/answers", AnswerLive.Index, :index
+    live "/answers/new", AnswerLive.Index, :new
+    live "/answers/:id/edit", AnswerLive.Index, :edit
+
+    live "/answers/:id", AnswerLive.Show, :show
+    live "/answers/:id/show/edit", AnswerLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
