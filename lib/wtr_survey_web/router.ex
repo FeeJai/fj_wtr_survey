@@ -17,13 +17,19 @@ defmodule WtrSurveyWeb.Router do
   scope "/", WtrSurveyWeb do
     pipe_through :browser
 
-    live "/", PromptLive.Index, :index
-    live "/prompts", PromptLive.Index, :index
-    live "/prompts/new", PromptLive.Index, :new
-    live "/prompts/:id/edit", PromptLive.Index, :edit
+    live "/surveys", SurveyLive.Index, :index
+    live "/surveys/new", SurveyLive.Index, :new
+    live "/surveys/:survey_id/edit", SurveyLive.Index, :edit
 
-    live "/prompts/:id", PromptLive.Show, :show
-    live "/prompts/:id/show/edit", PromptLive.Show, :edit
+    live "/surveys/:survey_id", SurveyLive.Show, :show
+    live "/surveys/:survey_id/show/edit", SurveyLive.Show, :edit
+
+    live "/surveys/:survey_id/prompts", PromptLive.Index, :index
+    live "/surveys/:survey_id/prompts/new", PromptLive.Index, :new
+    live "/surveys/:survey_id/prompts/:id/edit", PromptLive.Index, :edit
+
+    live "/surveys/:survey_id/prompts/:id", PromptLive.Show, :show
+    live "/surveys/:survey_id/prompts/:id/show/edit", PromptLive.Show, :edit
 
     live "/answers", AnswerLive.Index, :index
     live "/answers/new", AnswerLive.Index, :new

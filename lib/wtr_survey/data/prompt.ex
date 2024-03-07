@@ -7,6 +7,7 @@ defmodule WtrSurvey.Data.Prompt do
     field :participant, :string
     field :max, :float
     field :factor, :float
+    belongs_to :survey, WtrSurvey.Data.Survey
     has_many :answers, WtrSurvey.Data.Answer
 
     timestamps(type: :utc_datetime)

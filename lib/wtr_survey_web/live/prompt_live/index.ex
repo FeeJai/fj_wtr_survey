@@ -5,8 +5,11 @@ defmodule WtrSurveyWeb.PromptLive.Index do
   alias WtrSurvey.Data.Prompt
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, stream(socket, :prompts, Data.list_prompts())}
+  def mount(_params = %{"survey_id" => survey_id}, _session, socket) do
+    {:ok,
+     socket
+     |> assign(:survey_id, survey_id)
+     |> stream(:prompts, Data.list_prompts())}
   end
 
   @impl true
