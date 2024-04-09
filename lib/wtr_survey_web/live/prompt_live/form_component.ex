@@ -52,7 +52,8 @@ defmodule WtrSurveyWeb.PromptLive.FormComponent do
   end
 
   def handle_event("save", %{"prompt" => prompt_params}, socket) do
-    save_prompt(socket, socket.assigns.action, prompt_params)
+    params_with_survey = Map.put(prompt_params, "survey_id", socket.assigns.survey_id)
+    save_prompt(socket, socket.assigns.action, params_with_survey)
   end
 
   defp save_prompt(socket, :edit, prompt_params) do
