@@ -6,10 +6,12 @@ defmodule WtrSurveyWeb.PromptLive.Index do
 
   @impl true
   def mount(_params = %{"survey_id" => survey_id}, _session, socket) do
+    prompts = Data.list_prompts_by_survey_id(survey_id)
+
     {:ok,
      socket
      |> assign(:survey_id, survey_id)
-     |> stream(:prompts, Data.list_prompts())}
+     |> stream(:prompts, prompts)}
   end
 
   @impl true

@@ -7,7 +7,8 @@ defmodule WtrSurvey.Data.Prompt do
     field :participant, :string
     field :max, :float
     field :factor, :float
-    belongs_to :survey, WtrSurvey.Data.Survey
+    field :survey_id, :id, references: WtrSurvey.Data.Survey
+    # belongs_to :survey, WtrSurvey.Data.Survey
     has_many :answers, WtrSurvey.Data.Answer
 
     timestamps(type: :utc_datetime)
@@ -16,7 +17,7 @@ defmodule WtrSurvey.Data.Prompt do
   @doc false
   def changeset(prompt, attrs) do
     prompt
-    |> cast(attrs, [:title, :participant, :max, :factor])
-    |> validate_required([:title, :participant, :max, :factor])
+    |> cast(attrs, [:title, :participant, :max, :factor, :survey_id])
+    |> validate_required([:title, :participant, :max, :factor, :survey_id])
   end
 end

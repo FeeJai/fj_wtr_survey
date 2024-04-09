@@ -21,6 +21,10 @@ defmodule WtrSurvey.Data do
     Repo.all(Prompt)
   end
 
+  def list_prompts_by_survey_id(survey_id) do
+    Repo.all(from(p in Prompt, where: p.survey_id == ^survey_id))
+  end
+
   @doc """
   Gets a single prompt.
 

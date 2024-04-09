@@ -19,13 +19,13 @@
   <.button phx-click="subtract"><%= @prompt.participant %> &#62;</.button>
 </div>
 
-<.back navigate={~p"/prompts"}>Back to prompts</.back>
+<.back navigate={~p"/surveys/#{@survey_id}/prompts"}>Back to prompts</.back>
 
 <.modal
   :if={@live_action == :edit}
   id="prompt-modal"
   show
-  on_cancel={JS.patch(~p"/prompts/#{@prompt}")}
+  on_cancel={JS.patch(~p"/surveys/#{@survey_id}/prompts/#{@prompt}")}
 >
   <.live_component
     module={WtrSurveyWeb.PromptLive.FormComponent}
@@ -33,6 +33,6 @@
     title={@page_title}
     action={@live_action}
     prompt={@prompt}
-    patch={~p"/prompts/#{@prompt}"}
+    patch={~p"/surveys/#{@survey_id}/prompts/#{@prompt}"}
   />
 </.modal>

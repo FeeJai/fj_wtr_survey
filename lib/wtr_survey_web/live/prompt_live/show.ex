@@ -2,7 +2,6 @@ defmodule WtrSurveyWeb.PromptLive.Show do
   use WtrSurveyWeb, :live_view
 
   alias WtrSurvey.Data
-  alias WtrSurvey.Data.Answer
 
   @impl true
   def mount(_params, _session, socket) do
@@ -10,13 +9,14 @@ defmodule WtrSurveyWeb.PromptLive.Show do
   end
 
   @impl true
-  def handle_params(%{"id" => id}, _, socket) do
+  def handle_params(%{"id" => id, "survey_id" => survey_id}, _, socket) do
     prompt = Data.get_prompt!(id)
 
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
      |> assign(:prompt, prompt)
+     |> assign(:survey_id, survey_id)
      |> assign(:you, prompt.max)
      |> assign(:participant, 0)}
   end

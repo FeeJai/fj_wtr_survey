@@ -8,7 +8,7 @@ defmodule WtrSurvey.Repo.Migrations.CreatePrompts do
       add :max, :float
       add :factor, :float
 
-      add :survey_id, references(:surveys, on_delete: :delete_all)
+      add :survey_id, references(:surveys, on_delete: :delete_all), null: false
 
       timestamps(type: :utc_datetime)
     end
