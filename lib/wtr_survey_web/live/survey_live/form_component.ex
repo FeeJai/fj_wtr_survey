@@ -20,6 +20,7 @@ defmodule WtrSurveyWeb.SurveyLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:title]} type="text" label="Title" />
+        <.input field={@form[:active]} type="checkbox" label="Active" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Survey</.button>
         </:actions>

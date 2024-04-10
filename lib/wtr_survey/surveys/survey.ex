@@ -4,6 +4,7 @@ defmodule WtrSurvey.Surveys.Survey do
 
   schema "surveys" do
     field :title, :string
+    field :active, :boolean, default: false
     has_many :prompts, WtrSurvey.Data.Prompt
 
     timestamps(type: :utc_datetime)
@@ -12,7 +13,7 @@ defmodule WtrSurvey.Surveys.Survey do
   @doc false
   def changeset(survey, attrs) do
     survey
-    |> cast(attrs, [:title])
+    |> cast(attrs, [:title, :active])
     |> validate_required([:title])
   end
 end
