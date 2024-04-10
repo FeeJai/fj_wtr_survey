@@ -1,1 +1,13 @@
-<.flash_group flash={@flash} /> Hello, World!
+<.flash_group flash={@flash} />
+
+<.header>
+  Please select the survey you want to take:
+</.header>
+
+<.table id="survey" rows={@survey_collection}>
+  <:col :let={survey} label="Title">
+    <.link href={~p"/take_survey/#{survey.id}"}>
+      <%= survey.title %>
+    </.link>
+  </:col>
+</.table>

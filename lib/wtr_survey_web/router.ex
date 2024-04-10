@@ -17,6 +17,8 @@ defmodule WtrSurveyWeb.Router do
   scope "/", WtrSurveyWeb do
     pipe_through :browser
 
+    get "/", PageController, :home
+
     live "/surveys", SurveyLive.Index, :index
     live "/surveys/new", SurveyLive.Index, :new
     live "/surveys/:survey_id/edit", SurveyLive.Index, :edit

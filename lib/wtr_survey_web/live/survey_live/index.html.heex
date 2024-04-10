@@ -17,7 +17,7 @@
     <.icon :if={!survey.active} name="hero-eye-slash" class="h-5 w-5" />
     <.icon :if={survey.active} name="hero-eye" class="h-5 w-5" />
   </:col>
-  <:action :let={{id, survey}}>
+  <:action :let={{_id, survey}}>
     <.link navigate={~p"/surveys/#{survey}/prompts"}>
       Prompts
     </.link>
