@@ -14,13 +14,16 @@ defmodule WtrSurveyWeb.PromptLive.Show do
 
     y_scale_max = max(prompt.max, prompt.max * prompt.factor) |> Float.ceil() |> trunc()
 
+    participant_1_amount = ceil(prompt.max / 2)
+    participant_2_amount = (prompt.max - participant_1_amount) * prompt.factor
+
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
      |> assign(:prompt, prompt)
      |> assign(:survey_id, survey_id)
-     |> assign(:you, prompt.max)
-     |> assign(:participant, 0)
+     |> assign(:you, participant_1_amount)
+     |> assign(:participant, participant_2_amount)
      |> assign(:y_scale_max, y_scale_max)}
   end
 
