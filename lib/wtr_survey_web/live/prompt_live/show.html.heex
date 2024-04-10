@@ -9,6 +9,7 @@
 <canvas
   id={"chart-hook-#{@prompt.id}"}
   phx-hook="ChartHook"
+  phx-update="ignore"
   data-participant-name={@prompt.participant}
   data-participant-value={@participant}
   data-you-value={@you}
