@@ -12,13 +12,16 @@ defmodule WtrSurveyWeb.PromptLive.Show do
   def handle_params(%{"id" => id, "survey_id" => survey_id}, _, socket) do
     prompt = Data.get_prompt!(id)
 
+    y_scale_max = max(prompt.max, prompt.max * prompt.factor) |> Float.ceil() |> trunc()
+
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
      |> assign(:prompt, prompt)
      |> assign(:survey_id, survey_id)
      |> assign(:you, prompt.max)
-     |> assign(:participant, 0)}
+     |> assign(:participant, 0)
+     |> assign(:y_scale_max, y_scale_max)}
   end
 
   @impl true

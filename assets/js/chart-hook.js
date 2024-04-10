@@ -24,7 +24,8 @@ export default {
       options: {
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: true,
+            max: Math.round(this.el.dataset.yScaleMax)
           }
         }
       }
