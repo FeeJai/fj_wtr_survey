@@ -7,11 +7,7 @@
   </:actions>
 </.header>
 
-<.table
-  id="survey"
-  rows={@streams.survey_collection}
-  row_click={fn {_id, survey} -> JS.navigate(~p"/surveys/#{survey}") end}
->
+<.table id="survey" rows={@streams.survey_collection}>
   <:col :let={{_id, survey}} label="Title"><%= survey.title %></:col>
   <:col :let={{_id, survey}} label="Active">
     <.icon :if={!survey.active} name="hero-eye-slash" class="h-5 w-5" />
@@ -23,17 +19,16 @@
     </.link>
   </:action>
   <:action :let={{_id, survey}}>
-    <div class="sr-only">
-      <.link navigate={~p"/surveys/#{survey}"}>Show</.link>
-    </div>
-    <.link patch={~p"/surveys/#{survey}/edit"}>Edit</.link>
+    <.link patch={~p"/surveys/#{survey}/edit"}>
+      <.icon name="hero-pencil-square" class="h-6 w-6" />
+    </.link>
   </:action>
   <:action :let={{id, survey}}>
     <.link
       phx-click={JS.push("delete", value: %{survey_id: survey.id}) |> hide("##{id}")}
-      data-confirm="Are you sure?"
+      data-confirm="Are you sure ypu want to delete that survey?"
     >
-      Delete
+      <.icon name="hero-trash" class="h-6 w-6" />
     </.link>
   </:action>
 </.table>

@@ -1,9 +1,6 @@
 defmodule WtrSurveyWeb.TakeLive.AnswerSurvey do
   use WtrSurveyWeb, :live_view
 
-  alias WtrSurvey.Surveys
-  alias WtrSurvey.Data.Session
-
   @impl true
   def mount(%{"session_id" => session_id}, _session, socket) do
     session = WtrSurvey.Data.get_session!(session_id)

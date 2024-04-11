@@ -2,7 +2,9 @@
   Preview: <br /> WTR prompt <%= @prompt.id %>
   <:subtitle><%= @prompt.title %></:subtitle>
   <:actions>
-    <%!-- <.button phx-click="save">Save answer</.button> --%>
+    <.button phx-click={JS.navigate(~p"/surveys/#{@survey_id}/prompts/#{@prompt.id}/show/edit")}>
+      Edit
+    </.button>
   </:actions>
 </.header>
 

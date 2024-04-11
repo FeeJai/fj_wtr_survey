@@ -23,9 +23,6 @@ defmodule WtrSurveyWeb.Router do
     live "/surveys/new", SurveyLive.Index, :new
     live "/surveys/:survey_id/edit", SurveyLive.Index, :edit
 
-    live "/surveys/:survey_id", SurveyLive.Show, :show
-    live "/surveys/:survey_id/show/edit", SurveyLive.Show, :edit
-
     live "/surveys/:survey_id/prompts", PromptLive.Index, :index
     live "/surveys/:survey_id/prompts/new", PromptLive.Index, :new
     live "/surveys/:survey_id/prompts/:id/edit", PromptLive.Index, :edit
@@ -35,13 +32,6 @@ defmodule WtrSurveyWeb.Router do
 
     live "/take_survey/survey/:survey_id", TakeLive.StartSurvey, :take_survey
     live "/take_survey/session/:session_id", TakeLive.AnswerSurvey, :answer_survey
-
-    live "/answers", AnswerLive.Index, :index
-    live "/answers/new", AnswerLive.Index, :new
-    live "/answers/:id/edit", AnswerLive.Index, :edit
-
-    live "/answers/:id", AnswerLive.Show, :show
-    live "/answers/:id/show/edit", AnswerLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
