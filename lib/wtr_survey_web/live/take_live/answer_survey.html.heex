@@ -1,0 +1,34 @@
+<%= if !@completed do %>
+  <.header>
+    <%= @prompt.title %>
+  </.header>
+
+  <div id={"prompt-#{@prompt.id}"}>
+    <canvas
+      id={"chart-hook-#{@prompt.id}"}
+      phx-hook="ChartHook"
+      phx-update="ignore"
+      data-participant-name={@prompt.participant}
+      data-participant-value={@participant}
+      data-you-value={@you}
+      data-y-scale-max={@y_scale_max}
+    >
+    </canvas>
+  </div>
+
+  <div class="flex justify-between">
+    <.button phx-click="add">&#60; You</.button>
+    <.button phx-click="subtract"><%= @prompt.participant %> &#62;</.button>
+  </div>
+
+  <div class="mt-8 flex justify-center">
+    <.button phx-click="save">Save answer and continue</.button>
+  </div>
+<% else %>
+  <.header>
+    Thank you!
+    <:subtitle>
+      Your have completed this survey
+    </:subtitle>
+  </.header>
+<% end %>

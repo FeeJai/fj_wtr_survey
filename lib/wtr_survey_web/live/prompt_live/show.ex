@@ -59,24 +59,6 @@ defmodule WtrSurveyWeb.PromptLive.Show do
     end
   end
 
-  @impl true
-  def handle_event("save", _params, socket) do
-    prompt = socket.assigns.prompt
-
-    case Data.create_answer(%{
-           "you" => socket.assigns.you,
-           "participant" => socket.assigns.participant,
-           "prompt_id" => prompt.id
-         }) do
-      {:ok, _answer} ->
-        {:noreply,
-         socket |> put_flash(:info, "Answer saved successfully") |> push_redirect(to: ~p"/")}
-
-      {:error, _changeset} ->
-        {:noreply, socket |> put_flash(:warning, "Error when saving answer")}
-    end
-  end
-
   defp page_title(:show), do: "Show Prompt"
   defp page_title(:edit), do: "Edit Prompt"
 end

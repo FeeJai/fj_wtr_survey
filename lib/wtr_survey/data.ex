@@ -8,6 +8,7 @@ defmodule WtrSurvey.Data do
 
   alias WtrSurvey.Data.Prompt
   alias WtrSurvey.Data.Session
+  alias WtrSurvey.Data.Answer
 
   @doc """
   Returns the list of prompts.
@@ -26,6 +27,22 @@ defmodule WtrSurvey.Data do
     Repo.all(from(p in Prompt, where: p.survey_id == ^survey_id))
   end
 
+  def list_unanswered_prompts_by_session_id(survey_id, session_id) do
+    Repo.all(
+      from(p in Prompt,
+        where: p.survey_id == ^survey_id,
+        where:
+          p.id not in subquery(
+            from(a in Answer,
+              where: a.session_id == ^session_id,
+              select: a.prompt_id
+            )
+          )
+      )
+    )
+    |> IO.inspect()
+  end
+
   @doc """
   Gets a single prompt.
 
@@ -41,6 +58,8 @@ defmodule WtrSurvey.Data do
 
   """
   def get_prompt!(id), do: Repo.get!(Prompt, id)
+
+  def get_session!(id), do: Repo.get!(Session, id)
 
   @doc """
   Creates a prompt.

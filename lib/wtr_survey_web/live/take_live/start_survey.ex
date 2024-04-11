@@ -2,7 +2,6 @@ defmodule WtrSurveyWeb.TakeLive.StartSurvey do
   use WtrSurveyWeb, :live_view
 
   alias WtrSurvey.Surveys
-  alias WtrSurvey.Surveys.Survey
   alias WtrSurvey.Data.Session
 
   @impl true
