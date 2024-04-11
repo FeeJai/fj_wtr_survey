@@ -6,7 +6,7 @@
 
 <.table id="survey" rows={@survey_collection}>
   <:col :let={survey} label="Title">
-    <.link href={~p"/take_survey/#{survey.id}"}>
+    <.link href={~p"/take_survey/survey/#{survey.id}"}>
       <%= survey.title %>
     </.link>
   </:col>

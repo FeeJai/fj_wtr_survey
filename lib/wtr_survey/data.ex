@@ -7,6 +7,7 @@ defmodule WtrSurvey.Data do
   alias WtrSurvey.Repo
 
   alias WtrSurvey.Data.Prompt
+  alias WtrSurvey.Data.Session
 
   @doc """
   Returns the list of prompts.
@@ -56,6 +57,12 @@ defmodule WtrSurvey.Data do
   def create_prompt(attrs \\ %{}) do
     %Prompt{}
     |> Prompt.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_session(attrs \\ %{}) do
+    %Session{}
+    |> Session.changeset(attrs)
     |> Repo.insert()
   end
 

@@ -4,7 +4,7 @@ defmodule WtrSurvey.Data.Session do
 
   schema "sessions" do
     field :participant_name, :string
-    field :survey_id, :id
+    field :survey_id, :id, references: WtrSurvey.Data.Survey
 
     timestamps(type: :utc_datetime)
   end
@@ -12,7 +12,8 @@ defmodule WtrSurvey.Data.Session do
   @doc false
   def changeset(session, attrs) do
     session
-    |> cast(attrs, [:participant_name])
-    |> validate_required([:participant_name])
+    |> cast(attrs, [:participant_name, :survey_id])
+    |> validate_required([:participant_name, :survey_id])
+    |> validate_length(:participant_name, min: 2)
   end
 end
