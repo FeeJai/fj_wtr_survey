@@ -25,7 +25,7 @@ prompt = %Prompt{
   survey_id: survey.id,
   title: "A or B?",
   participant: "yourself",
-  max: 10.0,
+  max: 10,
   factor: 2.5
 }
 

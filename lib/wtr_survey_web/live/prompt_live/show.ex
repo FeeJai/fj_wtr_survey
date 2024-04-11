@@ -12,7 +12,7 @@ defmodule WtrSurveyWeb.PromptLive.Show do
   def handle_params(%{"id" => id, "survey_id" => survey_id}, _, socket) do
     prompt = Data.get_prompt!(id)
 
-    y_scale_max = max(prompt.max, prompt.max * prompt.factor) |> Float.ceil() |> trunc()
+    y_scale_max = max(prompt.max, prompt.max * prompt.factor) |> ceil() |> trunc()
 
     participant_1_amount = ceil(prompt.max / 2)
     participant_2_amount = (prompt.max - participant_1_amount) * prompt.factor

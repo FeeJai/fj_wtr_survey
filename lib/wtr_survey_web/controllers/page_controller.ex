@@ -7,7 +7,7 @@ defmodule WtrSurveyWeb.PageController do
     # The home page is often custom made,
     # so skip the default app layout.
 
-    survey_collection = Surveys.list_survey()
+    survey_collection = Surveys.list_active_survey()
     render(conn, :home, survey_collection: survey_collection)
   end
 end

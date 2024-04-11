@@ -5,7 +5,7 @@ defmodule WtrSurvey.Data.Prompt do
   schema "prompts" do
     field :title, :string
     field :participant, :string
-    field :max, :float
+    field :max, :integer
     field :factor, :float
     field :survey_id, :id, references: WtrSurvey.Data.Survey
     # belongs_to :survey, WtrSurvey.Data.Survey

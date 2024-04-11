@@ -21,6 +21,10 @@ defmodule WtrSurvey.Surveys do
     Repo.all(Survey)
   end
 
+  def list_active_survey do
+    Repo.all(from s in Survey, where: s.active == true)
+  end
+
   @doc """
   Gets a single survey.
 
