@@ -30,6 +30,8 @@ defmodule WtrSurveyWeb.Router do
     live "/surveys/:survey_id/prompts/:id", PromptLive.Show, :show
     live "/surveys/:survey_id/prompts/:id/show/edit", PromptLive.Show, :edit
 
+    get "/surveys/:survey_id/results", ResultsController, :show
+
     live "/take_survey/survey/:survey_id", TakeLive.StartSurvey, :take_survey
     live "/take_survey/session/:session_id", TakeLive.AnswerSurvey, :answer_survey
   end

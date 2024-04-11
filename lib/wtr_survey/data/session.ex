@@ -5,6 +5,7 @@ defmodule WtrSurvey.Data.Session do
   schema "sessions" do
     field :participant_name, :string
     field :survey_id, :id, references: WtrSurvey.Data.Survey
+    has_many :answers, WtrSurvey.Data.Answer
 
     timestamps(type: :utc_datetime)
   end

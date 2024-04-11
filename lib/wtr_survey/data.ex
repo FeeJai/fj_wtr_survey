@@ -40,7 +40,11 @@ defmodule WtrSurvey.Data do
           )
       )
     )
-    |> IO.inspect()
+  end
+
+  def list_sessions_by_survey_id(survey_id) do
+    from(s in Session, where: s.survey_id == ^survey_id, preload: [:answers])
+    |> Repo.all()
   end
 
   @doc """

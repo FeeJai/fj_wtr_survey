@@ -9,10 +9,15 @@
 
 <.table id="survey" rows={@streams.survey_collection}>
   <:col :let={{_id, survey}} label="Title"><%= survey.title %></:col>
-  <:col :let={{_id, survey}} label="Active">
+  <:col :let={{_id, survey}} label="Visible">
     <.icon :if={!survey.active} name="hero-eye-slash" class="h-5 w-5" />
     <.icon :if={survey.active} name="hero-eye" class="h-5 w-5" />
   </:col>
+  <:action :let={{_id, survey}}>
+    <.link navigate={~p"/surveys/#{survey}/results"}>
+      Results
+    </.link>
+  </:action>
   <:action :let={{_id, survey}}>
     <.link navigate={~p"/surveys/#{survey}/prompts"}>
       Prompts
@@ -26,7 +31,7 @@
   <:action :let={{id, survey}}>
     <.link
       phx-click={JS.push("delete", value: %{survey_id: survey.id}) |> hide("##{id}")}
-      data-confirm="Are you sure ypu want to delete that survey?"
+      data-confirm="Are you sure you want to delete that survey?"
     >
       <.icon name="hero-trash" class="h-6 w-6" />
     </.link>
